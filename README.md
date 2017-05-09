@@ -1,17 +1,17 @@
 # sell
 
-> sell app
+> 基于VUE 全家桶开发的仿饿了么外卖app
 
 ## Build Setup
 
-``` bash
-# install dependencies
+
+# i安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
+# 运行
 npm run dev
 
-# build for production with minification
+# 打包
 npm run build
 
 # run unit tests
