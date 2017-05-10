@@ -15,6 +15,10 @@
         </div>
       </div>
     </div>
+    <div class="ball-container">
+      <div transition="drop" v-for="ball in balls" v-show="ball.show" class="ball"></div>
+      <div class="inner"></div>
+    </div>
   </div>
 </template>
 
@@ -24,7 +28,7 @@
       selectFoods: {
         type: Array,
         default() {
-          return [{price: 20, count: 1}];
+          return [];
         }
       },
       deliveryPrice: {
@@ -35,6 +39,27 @@
         type: Number,
         default: 0
       }
+    },
+    data() {
+        return {
+            balls:[
+                {
+                  show: false
+                },
+                {
+                  show: false
+                },
+                {
+                  show: false
+                },
+                {
+                  show: false
+                },
+                {
+                  show: false
+                }
+            ]
+        };
     },
     computed: {
       totalPrice() {
@@ -162,4 +187,19 @@
           &.enough
             background :#00b43c
             color :#fff
+    .ball-container
+      .ball
+        position: fixed
+        left: 32px
+        bottom: 22px
+        z-index: 200
+        .drop-transition
+          transition :all 0.4s
+          .inner
+            width :16px
+            height: 16px
+            border-radius :50%
+            background :rgb(0,160,220)
+            transition:all 0.4s
+
 </style>
