@@ -42,7 +42,7 @@
     },
     data() {
         return {
-            balls:[
+            balls: [
                 {
                   show: false
                 },
@@ -58,7 +58,8 @@
                 {
                   show: false
                 }
-            ]
+            ],
+            dropBalls: []
         };
     },
     computed: {
@@ -75,7 +76,6 @@
         this.selectFoods.forEach((food) => {
           count += food.count;
         });
-        console.log(count);
         return count;
       },
       payDesc() {
@@ -93,6 +93,19 @@
             return 'not-enough';
         } else {
           return 'enough';
+        }
+      }
+    },
+    methods: {
+      drop(el) {
+        for (let i = 0; i < this.balls.length; i++) {
+          let ball = this.balls[i];
+          if (!ball.show) {
+            ball.show = true;
+            ball.el = el;
+            this.dropBalls.push(ball);
+            return;
+          }
         }
       }
     }
