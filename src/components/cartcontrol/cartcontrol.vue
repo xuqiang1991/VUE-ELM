@@ -18,11 +18,9 @@
           type: Object
         }
     },
-    created() {
-    },
     methods: {
       addCart(event) {
-          if (event._constructed) {
+          if (!event._constructed) {
               return;
           }
           if (!this.food.count) {
