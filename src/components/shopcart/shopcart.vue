@@ -1,6 +1,6 @@
 <template>
   <div class="shopcart">
-    <div class="content">
+    <div class="content" @click="toggleList">
       <div class="content-left">
         <div class="logo-wrapper">
           <div class="logo" :class="{'highlight':totalCount>0}"><i class="icon-shopping_cart" :class="{'highlight':totalCount>0}"></i></div>
@@ -20,10 +20,31 @@
         <div class="inner inner-hook"></div>
       </div>
     </div>
+    <div class="shopcart-list" v-show="listShow" transition="fold">
+      <div class="list-header">
+        <div class="title">购物车</div>
+        <span class="empty">清空</span>
+      </div>
+      <div class="list-content">
+        <ul>
+          <li class="food" v-for="food in selectFoods">
+            <span class="name">{{food.name}}</span>
+            <div class="price">
+              <span>￥{{food.price*food.count}}</span>
+            </div>
+            <div class="cartControl-wrapper">
+              <cartcontrol :food="food"></cartcontrol>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import cartcontrol from 'components/cartcontrol/cartcontrol';
+
   export default {
     props: {
       selectFoods: {
@@ -60,7 +81,8 @@
                   show: false
                 }
             ],
-            dropBalls: []
+            dropBalls: [],
+            fold: true
         };
     },
     computed: {
@@ -94,6 +116,14 @@
         } else {
           return 'enough';
         }
+      },
+      listShow() {
+          if (!this.totalCount) {
+            this.fold = true;
+            return false;
+          }
+          let show = !this.fold;
+          return show;
       }
     },
     methods: {
@@ -107,6 +137,12 @@
             return;
           }
         }
+      },
+      toggleList() {
+        if (!this.totalCount) {
+          return;
+        }
+        this.fold = !this.fold;
       }
     },
     transitions: {
@@ -122,7 +158,6 @@
               el.style.display = '';
               el.style.webkitTransform = `translate3d(0,${y}px,0)`;
               el.style.transform = `translate3d(0,${y}px,0)`;
-              console.log(el);
               let inner = el.getElementsByClassName('inner-hook')[0];
               inner.style.webkitTransform = `translate3d(${x}px,0,0)`;
               inner.style.transform = `translate3d(${x}px,0,0)`;
@@ -133,7 +168,6 @@
           /* eslint-disable no-unused-vars */
           let rf = el.offsetHeight;
           this.$nextTick(() => {
-            console.log(el);
             el.style.webkitTransform = 'translate3d(0,0,0)';
             el.style.transform = 'translate3d(0,0,0)';
             let inner = el.getElementsByClassName('inner-hook')[0];
@@ -143,13 +177,15 @@
         },
         afterEnter(el) {
           let ball = this.dropBalls.shift();
-          console.log(el);
           if (ball) {
             ball.show = false;
             el.style.display = 'none';
           };
         }
       }
+    },
+    components: {
+      cartcontrol
     }
   };
 </script>
@@ -248,7 +284,8 @@
         left: 32px
         bottom: 22px
         z-index: 200
-        .drop-transition
+        transition: all 0.6s cubic-bezier(0.49, -0.29, 0.75, 0.41)
+        &.drop-transition
           transition :all 0.4s
           .inner
             width :16px
@@ -257,4 +294,15 @@
             background :rgb(0,160,220)
             transition:all 0.4s
 
+    .shopcart-list
+      position :absolute
+      left :0
+      top :0
+      z-index :-1
+      width :100%
+      &.fold-transition
+        transition :all 0.5s
+        transform :translate3d(0,-100%,0)
+      &.fold-enter,&.fold-leave
+        transform :translate3d(0,0,0)
 </style>
