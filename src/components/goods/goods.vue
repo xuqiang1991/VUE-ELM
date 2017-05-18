@@ -37,6 +37,7 @@
     </div>
     <shopcart v-ref:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
+  <food :food="selectFood"></food>
 </template>
 
 <script type="text/ecmascript-6">
@@ -54,7 +55,8 @@
         return {
             goods: [],
             listHeight: [],
-            scrolly: 0
+            scrolly: 0,
+            selectFood: []
         };
     },
     computed: {
