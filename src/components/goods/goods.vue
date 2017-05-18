@@ -13,7 +13,7 @@
         <li v-for="item in goods" class="food-list food-list-hook">
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li v-for="food in item.foods" class="food-item border-1px">
+            <li v-for="food in item.foods" @click="selectFood(food,$event)" class="food-item border-1px">
               <div class="icon">
                 <img :src="food.icon" height="57">
               </div>
@@ -37,13 +37,14 @@
     </div>
     <shopcart v-ref:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
-  <food :food="selectFood"></food>
+  <food :food="selectedFood" v-ref:food ></food>
 </template>
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll';
   import shopcart from 'components/shopcart/shopcart';
   import cartcontrol from 'components/cartcontrol/cartcontrol';
+  import food from 'components/food/food';
 
   const ERR_OK = 0;
 
@@ -56,7 +57,7 @@
             goods: [],
             listHeight: [],
             scrolly: 0,
-            selectFood: []
+            selectedFood: []
         };
     },
     computed: {
@@ -132,11 +133,20 @@
               height += item.clientHeight;
               this.listHeight.push(height);
           }
+      },
+      selectFood(food, event) {
+        if (!event._constructed) {
+          // 去掉自带click事件的点击
+          return;
+        }
+        this.selectedFood = food;
+        this.$refs.food.show();
       }
     },
     components: {
       shopcart,
-      cartcontrol
+      cartcontrol,
+      food
     },
     events: {
       'cart.add'(target) {
