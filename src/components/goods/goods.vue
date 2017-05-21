@@ -13,7 +13,7 @@
         <li v-for="item in goods" class="food-list food-list-hook">
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li v-for="food in item.foods" @click="selectFood(food,$event)" class="food-item border-1px">
+            <li @click="selectFood(food,$event)" v-for="food in item.foods"  class="food-item border-1px">
               <div class="icon">
                 <img :src="food.icon" height="57">
               </div>
@@ -106,6 +106,14 @@
           let el = foodList[index];
           this.foodsScroll.scrollToElement(el, 300);
         },
+        selectFood(food, event) {
+          if (!event._constructed) {
+            // 去掉自带click事件的点击
+            return;
+          }
+          this.selectedFood = food;
+          this.$refs.food.show();
+        },
         _drop(target) {
           // 体验优化 ，异步执行
           this.$nextTick(() => {
@@ -124,7 +132,7 @@
             this.scrolly = Math.abs(Math.round(pos.y));
           });
       },
-        _calculateHeight() {
+      _calculateHeight() {
           let foodList = this.$els.foodsWrapper.getElementsByClassName('food-list-hook');
           let height = 0;
           this.listHeight.push(height);
@@ -133,14 +141,6 @@
               height += item.clientHeight;
               this.listHeight.push(height);
           }
-      },
-      selectFood(food, event) {
-        if (!event._constructed) {
-          // 去掉自带click事件的点击
-          return;
-        }
-        this.selectedFood = food;
-        this.$refs.food.show();
       }
     },
     components: {
