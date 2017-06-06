@@ -57,7 +57,7 @@
         goods: [],
         listHeight: [],
         scrolly: 0,
-        selectedFood: []
+        selectedFood: {}
       };
     },
     computed: {
