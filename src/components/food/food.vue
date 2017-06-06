@@ -41,56 +41,54 @@
   import BScroll from 'better-scroll';
   import Vue from 'vue';
   import cartcontrol from 'components/cartcontrol/cartcontrol';
-  import split from 'components/split/split';
   import ratingselect from 'components/ratingselect/ratingselect';
+  import split from 'components/split/split';
 
   const All = 2;
 
   export default {
     props: {
-        food: {
-            type: Object
-        }
+      food: {
+        type: Object
+      }
     },
     data() {
-       return {
-         showFlag: false,
-         selectType: All,
-         onlyContent: true,
-         desc: {
-           all: '全部',
-           positive: '推荐',
-           negative: '吐槽'
-         }
-       };
+      return {
+        showFlag: false,
+        selectType: All,
+        onlyContent: true,
+        desc: {
+          all: '全部',
+          positive: '推荐',
+          negative: '吐槽'
+        }
+      };
     },
     methods: {
-        show() {
-            console.log(this.food);
-            this.showFlag = true;
-            console.log(this.food);
-            this.selectType = All;
-            this.onlyContent = true;
-            this.$nextTick(() => {
-              if (!this.scroll) {
-                this.scroll = new BScroll(this.$els.food, {
-                  click: true
-                });
-              } else {
-                  this.scroll.refresh();
-              }
+      show() {
+        this.showFlag = true;
+        this.selectType = All;
+        this.onlyContent = true;
+        this.$nextTick(() => {
+          if (!this.scroll) {
+            this.scroll = new BScroll(this.$els.food, {
+              click: true
             });
-        },
-        hide() {
-           this.showFlag = false;
-        },
-        addFirst(event) {
-          if (!event._constructed) {
-            return;
+          } else {
+            this.scroll.refresh();
           }
-          this.$dispatch('cart.add', event.target);
-          Vue.set(this.food, 'count', 1);
+        });
+      },
+      hide() {
+        this.showFlag = false;
+      },
+      addFirst(event) {
+        if (!event._constructed) {
+          return;
         }
+        this.$dispatch('cart.add', event.target);
+        Vue.set(this.food, 'count', 1);
+      }
 
     },
     components: {

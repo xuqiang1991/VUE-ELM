@@ -13,7 +13,7 @@
         <li v-for="item in goods" class="food-list food-list-hook">
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li @click="selectFood(food,$event)" v-for="food in item.foods"  class="food-item border-1px">
+            <li @click="selectFood(food,$event)" v-for="food in item.foods" class="food-item border-1px">
               <div class="icon">
                 <img :src="food.icon" height="57">
               </div>
@@ -50,15 +50,15 @@
 
   export default {
     props: {
-        seller: Object
+      seller: Object
     },
     data () {
-        return {
-            goods: [],
-            listHeight: [],
-            scrolly: 0,
-            selectedFood: []
-        };
+      return {
+        goods: [],
+        listHeight: [],
+        scrolly: 0,
+        selectedFood: []
+      };
     },
     computed: {
       currentIndex() {
@@ -72,75 +72,74 @@
         return 0;
       },
       selectFoods() {
-          let foods = [];
-          this.goods.forEach((good) => {
-            good.foods.forEach((food) => {
-              if (food.count) {
-                foods.push(food);
-              }
-            });
+        let foods = [];
+        this.goods.forEach((good) => {
+          good.foods.forEach((food) => {
+            if (food.count) {
+              foods.push(food);
+            }
           });
-          return foods;
+        });
+        return foods;
       }
     },
     created () {
-        this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
-        this.$http.get('/api/goods').then((response) => {
-          response = response.body;
-          if (response.errno === ERR_OK) {
-              this.goods = response.data;
-              this.$nextTick(() => {
-                this._initScroll();
-                this._calculateHeight();
-              });
-          }
-        });
+      this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
+      this.$http.get('/api/goods').then((response) => {
+        response = response.body;
+        if (response.errno === ERR_OK) {
+          this.goods = response.data;
+          this.$nextTick(() => {
+            this._initScroll();
+            this._calculateHeight();
+          });
+        }
+      });
     },
     methods: {
-        selectMenu(index, event) {
-          if (!event._constructed) {
-            // 去掉自带click事件的点击
-            return;
-          }
-          let foodList = this.$els.foodsWrapper.getElementsByClassName('food-list-hook');
-          let el = foodList[index];
-          this.foodsScroll.scrollToElement(el, 300);
-        },
-        selectFood(food, event) {
-          if (!event._constructed) {
-            // 去掉自带click事件的点击
-            return;
-          }
-          this.selectedFood = food;
-          this.$refs.food.show();
-        },
-        _drop(target) {
-          // 体验优化 ，异步执行
-          this.$nextTick(() => {
-            this.$refs.shopcart.drop(target);
-          });
-        },
-        _initScroll() {
-          this.menuScroll = new BScroll(this.$els.menuWrapper, {
-              click: true
-          });
-          this.foodsScroll = new BScroll(this.$els.foodsWrapper, {
-            click: true,
-            probeType: 3
-          });
-          this.foodsScroll.on('scroll', (pos) => {
-            this.scrolly = Math.abs(Math.round(pos.y));
-          });
+      selectMenu(index, event) {
+        if (!event._constructed) {
+          // 去掉自带click事件的点击
+          return;
+        }
+        let foodList = this.$els.foodsWrapper.getElementsByClassName('food-list-hook');
+        let el = foodList[index];
+        this.foodsScroll.scrollToElement(el, 300);
+      },
+      selectFood(food, event) {
+        if (!event._constructed) {
+          return;
+        }
+        this.selectedFood = food;
+        this.$refs.food.show();
+      },
+      _drop(target) {
+        // 体验优化 ，异步执行
+        this.$nextTick(() => {
+          this.$refs.shopcart.drop(target);
+        });
+      },
+      _initScroll() {
+        this.menuScroll = new BScroll(this.$els.menuWrapper, {
+          click: true
+        });
+        this.foodsScroll = new BScroll(this.$els.foodsWrapper, {
+          click: true,
+          probeType: 3
+        });
+        this.foodsScroll.on('scroll', (pos) => {
+          this.scrolly = Math.abs(Math.round(pos.y));
+        });
       },
       _calculateHeight() {
-          let foodList = this.$els.foodsWrapper.getElementsByClassName('food-list-hook');
-          let height = 0;
+        let foodList = this.$els.foodsWrapper.getElementsByClassName('food-list-hook');
+        let height = 0;
+        this.listHeight.push(height);
+        for (let i = 0; i < foodList.length; i++) {
+          let item = foodList[i];
+          height += item.clientHeight;
           this.listHeight.push(height);
-          for (let i = 0; i < foodList.length; i++) {
-              let item = foodList[i];
-              height += item.clientHeight;
-              this.listHeight.push(height);
-          }
+        }
       }
     },
     components: {
