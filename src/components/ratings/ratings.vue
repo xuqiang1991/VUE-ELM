@@ -20,16 +20,23 @@
           </div>
           <div class="delivery-wrapper">
             <span class="title">送到时间</span>
-            <span class="score">{{seller.deliveryTime}}</span>
+            <span class="delivery">{{seller.deliveryTime}}分钟</span>
           </div>
         </div>
       </div>
     </div>
+    <split></split>
+    <ratingselect :select-type="selectType" :desc="desc" :ratings="food.ratings"></ratingselect>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import star from 'components/star/star';
+  import ratingselect from 'components/ratingselect/ratingselect';
+  import split from 'components/split/split';
+
+  const ALL = 2;
+  const ERR_OK= 0;
 
   export default {
       props: {
@@ -37,8 +44,26 @@
               type: Object
           }
       },
+      data() {
+          return {
+            ratings: [],
+            showFlag: false,
+            selectType: ALL,
+            onlyContent: true
+          };
+      },
+      created () {
+        this.$http.get('/api/ratings').then((response) => {
+          response = response.body;
+          if(response.errno ===ERR_OK) {
+            this.ratings
+          }
+        });
+      },
       components: {
-         star
+         star,
+         ratingselect,
+         split
       }
   };
 </script>
@@ -60,6 +85,9 @@
         width :137px
         border-right :1px solid rgba(7,17,27,0.1)
         text-align :center
+        @media only screen and (max-width :320px)
+          flex :0 0 120px
+          width :120px
         line-height :28px
         font-size :24px
         color :rgb(255,153,0)
@@ -74,7 +102,9 @@
           color :rgb(147, 153, 159)
       .overview-right
         flex :1
-        padding-left :24px
+        padding : 6px 0 6px 24px
+        @media only screen and (max-width :320px)
+          padding-left : 6px
         .score-wrapper
           margin-bottom :8px
           font-size :0
@@ -94,5 +124,16 @@
             vertical-align :top
             font-size :12px
             color :rgb(255,153,0)
+
+        .delivery-wrapper
+          font-size :0
+          .title
+            line-height :18px
+            font-size :12px
+            color :rgb(7,17,27)
+          .delivery
+            margin-left :12px
+            font-size :12px
+            color :rgb(147, 153, 159)
 
 </style>
