@@ -1,5 +1,5 @@
 <template>
-  <div class="ratings">
+  <div class="ratings" v-el:ratings>
     <div class="ratings-content">
       <div class="overview">
         <div class="overview-left">
@@ -26,17 +26,45 @@
       </div>
     </div>
     <split></split>
-    <ratingselect :select-type="selectType" :desc="desc" :ratings="food.ratings"></ratingselect>
+    <ratingselect :select-type="selectType" :desc="desc" :ratings=""></ratingselect>
+    <div class="ratings-wrapper">
+      <ul>
+        <li v-for="rating in ratings">
+          <div class="avatar">
+            <img width="25" height="28" :src="rating.avatar">
+          </div>
+          <div class="content">
+            <div class="name">{{rating.username}}</div>
+            <div class="star-wrapper">
+              <star :size="24" :score="rating.score"></star>
+              <span class="delivery" v-show="rating.deliveryTime">
+                {{rating.deliveryTime}}
+              </span>
+              <p class="text">{{rating.text}}</p>
+              <div class="recommend" v-show="rating.recommend &&rating.recommend.length">
+                <i class="icon-thumb_up"></i>
+                <span class="item" v-for="item in rating.recommend" >{{item}}</span>
+              </div>
+              <div class="time">
+                {{rating.rateTime | formatDate}}
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import BScroll from 'better-scroll';
+  import {formatDate} from 'common/js/date';
   import star from 'components/star/star';
   import ratingselect from 'components/ratingselect/ratingselect';
   import split from 'components/split/split';
 
   const ALL = 2;
-  const ERR_OK= 0;
+  const ERR_OK = 0;
 
   export default {
       props: {
@@ -55,10 +83,21 @@
       created () {
         this.$http.get('/api/ratings').then((response) => {
           response = response.body;
-          if(response.errno ===ERR_OK) {
-            this.ratings
+          if (response.errno === ERR_OK) {
+            this.ratings = response.data;
+            this.$nextTick(() => {
+              this.scroll = new BScroll(this.$els.ratings, {
+                click: true
+              });
+            });
           }
         });
+      },
+      filters: {
+        formatDate(time) {
+          let date = new Date(time);
+          return formatDate(date, 'yyyy-MM-dd hh:mm');
+        }
       },
       components: {
          star,
