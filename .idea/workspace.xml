@@ -21,7 +21,11 @@
       <file leaf-file-name="ratingselect.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/ratingselect/ratingselect.vue">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="3000">
+=======
+            <state relative-caret-position="2400">
+>>>>>>> 2beff7bb3b0ac5bb712ef693df07766632d7fa1f
               <caret line="100" column="41" lean-forward="false" selection-start-line="100" selection-start-column="1" selection-end-line="100" selection-end-column="41" />
               <folding />
             </state>
@@ -31,7 +35,11 @@
       <file leaf-file-name="icon.styl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/common/stylus/icon.styl">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="1590">
+=======
+            <state relative-caret-position="1272">
+>>>>>>> 2beff7bb3b0ac5bb712ef693df07766632d7fa1f
               <caret line="53" column="14" lean-forward="false" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="14" />
               <folding />
             </state>
@@ -41,7 +49,11 @@
       <file leaf-file-name="food.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/food/food.vue">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="2520">
+=======
+            <state relative-caret-position="2016">
+>>>>>>> 2beff7bb3b0ac5bb712ef693df07766632d7fa1f
               <caret line="89" column="26" lean-forward="false" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="26" />
               <folding>
                 <element signature="e#2253#2289#0" expanded="true" />
@@ -78,8 +90,13 @@
       <file leaf-file-name="goods.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/goods/goods.vue">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="2730">
               <caret line="94" column="13" lean-forward="false" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+=======
+            <state relative-caret-position="2184">
+              <caret line="94" column="13" lean-forward="true" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+>>>>>>> 2beff7bb3b0ac5bb712ef693df07766632d7fa1f
               <folding>
                 <element signature="e#1770#1806#0" expanded="true" />
               </folding>
@@ -429,12 +446,20 @@
       <workItem from="1497272065198" duration="4152000" />
       <workItem from="1497327562783" duration="2847000" />
       <workItem from="1497414993857" duration="2642000" />
+<<<<<<< HEAD
       <workItem from="1497965811893" duration="3000" />
+=======
+      <workItem from="1497662245340" duration="93000" />
+>>>>>>> 2beff7bb3b0ac5bb712ef693df07766632d7fa1f
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="141691000" />
+=======
+    <option name="totallyTimeSpent" value="141781000" />
+>>>>>>> 2beff7bb3b0ac5bb712ef693df07766632d7fa1f
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1056" extended-state="0" />
@@ -786,7 +811,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ratingselect/ratingselect.vue">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="3000">
+=======
+        <state relative-caret-position="2400">
+>>>>>>> 2beff7bb3b0ac5bb712ef693df07766632d7fa1f
           <caret line="100" column="41" lean-forward="false" selection-start-line="100" selection-start-column="1" selection-end-line="100" selection-end-column="41" />
           <folding />
         </state>
@@ -794,7 +823,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/stylus/icon.styl">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1590">
+=======
+        <state relative-caret-position="1272">
+>>>>>>> 2beff7bb3b0ac5bb712ef693df07766632d7fa1f
           <caret line="53" column="14" lean-forward="false" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="14" />
           <folding />
         </state>
@@ -802,8 +835,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/goods/goods.vue">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="2730">
           <caret line="94" column="13" lean-forward="false" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+=======
+        <state relative-caret-position="2184">
+          <caret line="94" column="13" lean-forward="true" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
+>>>>>>> 2beff7bb3b0ac5bb712ef693df07766632d7fa1f
           <folding>
             <element signature="e#1770#1806#0" expanded="true" />
           </folding>
@@ -812,7 +850,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/food/food.vue">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="2520">
+=======
+        <state relative-caret-position="2016">
+>>>>>>> 2beff7bb3b0ac5bb712ef693df07766632d7fa1f
           <caret line="89" column="26" lean-forward="false" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="26" />
           <folding>
             <element signature="e#2253#2289#0" expanded="true" />
